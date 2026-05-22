@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karla-magallanes-api-deployment
+  namespace: karla-magallanes-api-ns
+  labels:
+    app: karla-magallanes-api
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: karla-magallanes-api
+  template:
+    metadata:
+      labels:
+        app: karla-magallanes-api
+    spec:
+      containers:
+        - name: karla-magallanes-api
+          image: karlamagallanesdev/karla-magallanes-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8085
+          env:
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_ENV
+                  name: karla-magallanes-api-config
+            - name: APP_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_VERSION
+                  name: karla-magallanes-api-config
+            - name: APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_PORT
+                  name: karla-magallanes-api-config
+
+            - name: SECRET_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: karla-magallanes-api-secret
+            - name: SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: karla-magallanes-api-secret
