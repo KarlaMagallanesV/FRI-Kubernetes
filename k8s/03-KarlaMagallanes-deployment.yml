@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: karla-magallanes-api
-          image: karlamagallanesdev/karla-magallanes-api:latest
+          image: anyeli/karla-magallanes-api:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8085

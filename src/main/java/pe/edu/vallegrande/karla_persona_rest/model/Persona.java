@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table("personas")
+@Table("PERSONAS")
 public class Persona {
     @Id
     private Long id;
